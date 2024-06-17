@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0d1117;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            direction: rtl;
+        }
+        .container {
+            background-color: #161b22;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .info-section {
+            margin-bottom: 15px;
+        }
+        .info-section h2 {
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: #ccc;
+        }
+        .info-section p {
+            font-size: 16px;
+            margin: 5px 0;
+            color: #fff;
+        }
+        .info-section a {
+            font-size: 16px;
+            margin: 5px 0;
+            color: #1e90ff;
+            text-decoration: none;
+        }
+        .info-section a:hover {
+            text-decoration: underline;
+        }
+        .info-block {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .info-block div {
+            flex: 1;
+            padding: 10px;
+        }
+        .info-block div:not(:last-child) {
+            border-left: 1px solid #444;
+        }
+        .highlight {
+            font-weight: bold;
+        }
+        .button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            text-align: center;
+            background-color: #2ea043;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+            text-decoration: none;
+        }
+        .button:hover {
+            background-color: #248f3d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">{{ student.name }}</div>
+        <div class="info-section">
+            <h2>الرقم التعريفي:</h2>
+            <p>{{ student.id }}</p>
+        </div>
+        <div class="info-section">
+            <h2>القرار:</h2>
+            <p>{{ student.decision }}</p>
+        </div>
+        <div class="info-section">
+            <h2>المعدل:</h2>
+            <p>{{ student.average }}</p>
+        </div>
+        <div class="info-section">
+            <h2>المدرسة:</h2>
+            <a href="#">{{ student.school }}</a>
+        </div>
+        <div class="info-section">
+            <h2>الولاية:</h2>
+            <a href="#">{{ student.region }}</a>
+        </div>
+        <div class="info-section">
+            <h2>المركز:</h2>
+            <a href="#">{{ student.center }}</a>
+        </div>
+        <div class="info-section">
+            <h2>النتائج التفصيلية:</h2>
+            <a href="{{ student.detailed_results_link }}">🔗 عبر موقع الوزارة</a>
+        </div>
+        <a href="{{ student.detailed_results_link }}" class="button">عرض النتائج التفصيلية</a>
+    </div>
+</body>
+</html>
