@@ -69,7 +69,7 @@ def scrape():
     student_id = request.form['student_id'].zfill(5)  # Ensure the student ID is always 5 digits
     if not student_id.isdigit() or len(student_id) != 5:
         logging.error("Invalid student ID format")
-        return render_template('invalid_id.html'), 400
+        return render_template('404.html'), 400
     
     try:
         html = fetch_student_page(student_id)
