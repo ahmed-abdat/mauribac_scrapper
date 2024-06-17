@@ -2,5 +2,5 @@ car/*
 venv/*
 
 scrap.py
-requirements.txt
+requirment-to-scrape.txt
 mauribac_scrapper.py
