@@ -9,41 +9,49 @@ def fetch_student_page(student_id):
     url = f"https://www.mauribac.com/bac-2023-pFrFwkSfV/numero/{student_id}/"
     response = requests.get(url)
     response.raise_for_status()  # Ensure we raise an error for bad responses
+    response.encoding = 'utf-8'  # Ensure the response is treated as UTF-8
     return response.text
 
 def scrape_student_details(html):
     soup = BeautifulSoup(html, 'html.parser')
     student_details = {}
 
-    # Extracting student details (similar logic to your existing code)
+    # Extracting student's name
     name_tag = soup.select_one('h1.text-2xl.font-bold.text-center.mb-1')
     if name_tag:
         student_details['name'] = name_tag.text.strip()
 
+    # Extracting student ID
     id_tag = soup.select_one('h3.font-mono')
     if id_tag:
         student_details['id'] = id_tag.text.strip()
 
+    # Extracting student decision
     decision_tag = soup.select_one('div.px-2')
     if decision_tag:
         student_details['decision'] = decision_tag.text.strip()
 
+    # Extracting student average
     average_tag = soup.select_one('div.font-bold.text-xs')
     if average_tag:
         student_details['average'] = average_tag.text.strip()
 
+    # Extracting detailed results link
     details_link_tag = soup.select_one('a[href^="http://dec.education.gov.mr/bac-21/"]')
     if details_link_tag:
         student_details['detailed_results_link'] = details_link_tag['href']
 
+    # Extracting student school
     school_tag = soup.select_one('a[href*="/ecole/"]')
     if school_tag:
         student_details['school'] = school_tag.text.strip()
 
+    # Extracting student region
     region_tag = soup.select_one('a[href*="/wilaya/"]')
     if region_tag:
         student_details['region'] = region_tag.text.strip()
 
+    # Extracting student center
     center_tag = soup.select('a[href*="/centre/"]')
     if center_tag:
         student_details['center'] = center_tag[-1].text.strip()  # The center is the last matching element

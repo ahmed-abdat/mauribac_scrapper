@@ -1,43 +1,51 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>معلومات الطالب</title>
+    <title>Student Information</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #1a1a2e;
-            color: #e5e5e5;
+            font-family: 'Amiri', serif;
+            background-color: #121212;
+            color: #ffffff;
             display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             height: 100vh;
             margin: 0;
         }
         .container {
-            text-align: center;
-        }
-        .student-details {
-            border: 1px solid #444;
+            background-color: #1e1e1e;
             padding: 20px;
             border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .detail {
+            margin: 10px 0;
+        }
+        a {
+            color: #1e90ff;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="student-details">
-            <h1>{{ student_info.name }}</h1>
-            <p>Student ID: {{ student_info.id }}</p>
-            <p>Decision: {{ student_info.decision }}</p>
-            <p>Average: {{ student_info.average }}</p>
-            <p>School: {{ student_info.school }}</p>
-            <p>Region: {{ student_info.region }}</p>
-            <p>Center: {{ student_info.center }}</p>
-            <p><a href="{{ student_info.detailed_results_link }}" target="_blank">Detailed Results</a></p>
-        </div>
+        <div class="title">{{ student_info['name'] }}</div>
+        <div class="detail">Student ID: {{ student_info['id'] }}</div>
+        <div class="detail">Decision: {{ student_info['decision'] }}</div>
+        <div class="detail">Average: {{ student_info['average'] }}</div>
+        <div class="detail">School: {{ student_info['school'] }}</div>
+        <div class="detail">Region: {{ student_info['region'] }}</div>
+        <div class="detail">Center: {{ student_info['center'] }}</div>
+        <a href="{{ student_info['detailed_results_link'] }}" target="_blank">Detailed Results</a>
     </div>
 </body>
 </html>
