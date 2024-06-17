@@ -8,6 +8,8 @@ app = Flask(__name__)
 def fetch_student_page(student_id):
     url = f"https://www.mauribac.com/bac-2023-pFrFwkSfV/numero/{student_id}/"
     response = requests.get(url)
+    if response.status_code == 404:
+        raise requests.HTTPError("404 Not Found")
     response.raise_for_status()  # Ensure we raise an error for bad responses
     response.encoding = 'utf-8'  # Ensure the response is treated as UTF-8
     return response.text
@@ -72,6 +74,9 @@ def scrape():
             return render_template('404.html'), 404
         return render_template('student_info.html', student_info=student_info)
     except requests.HTTPError as e:
+        if "404" in str(e):
+            logging.error("Student ID not found: 404 error")
+            return render_template('404.html'), 404
         logging.exception("HTTP error occurred")
         return jsonify({'error': 'HTTP error occurred'}), 500
     except Exception as e:
